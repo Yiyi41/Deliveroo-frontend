@@ -1,1 +1,47 @@
 /* Other rules */
+.app {
+  max-width: 1024px;
+  margin: auto;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: antiquewhite;
+}
+header {
+  display: flex;
+}
+header img {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.meal {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: whitesmoke;
+}
+.meal img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.categoryBlock {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+  background-color: yellow;
+}
+
+.populaire {
+  color: rgb(255, 128, 0);
+}
+
+.panierBlock {
+  background-color: red;
+}
