@@ -59,12 +59,13 @@ function App() {
                   <h2 key={indexCategories}>{category.name}</h2>
                   <div className="categoryBlock">
                     {category.meals.map((meal, indexMeals) => {
-                      console.log(meal);
+                      // console.log(meal);
                       return (
                         <div
                           className="meal"
                           key={indexMeals}
                           onClick={() => {
+                            // console.log("cliqué"); onClick fonctionne
                             const newPanier = [...panier];
                             newPanier.push(meal);
                             setPanier(newPanier);
