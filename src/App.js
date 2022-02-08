@@ -6,7 +6,9 @@ import logo from "./assets/logo.svg";
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [panier, setPanier] = useState();
+  const [basket, setBasket] = useState([
+    // { title: "Brunch Vegan", price: 25, quantity: 1 },
+  ]);
 
   // const handleClick = () => {
   //   const newPanier = [...panier];
@@ -55,8 +57,8 @@ function App() {
           {data.categories.map((category, indexCategories) => {
             return (
               category.meals.length > 0 && (
-                <div>
-                  <h2 key={indexCategories}>{category.name}</h2>
+                <div key={indexCategories}>
+                  <h2>{category.name}</h2>
                   <div className="categoryBlock">
                     {category.meals.map((meal, indexMeals) => {
                       // console.log(meal);
@@ -65,10 +67,20 @@ function App() {
                           className="meal"
                           key={indexMeals}
                           onClick={() => {
-                            // console.log("cliqué"); onClick fonctionne
-                            const newPanier = [...panier];
-                            newPanier.push(meal);
-                            setPanier(newPanier);
+                            console.log("cliqué");
+
+                            const newBasket = [...basket];
+                            // ajouter une clé quantity à meal
+                            meal.quantity = 1;
+                            //avant de push meal, je vérifie si ce meal est déjà dans mon tableau
+                            for (let i = 0; i < basket.length; i++) {
+                              if (meal.id) {
+                                meal.quantity++;
+                              } else {
+                                newBasket.push(meal);
+                                setBasket(newBasket);
+                              }
+                            }
                           }}
                         >
                           <div>
@@ -98,12 +110,28 @@ function App() {
 
         <div className="panierBlock">
           <p>Valider mon panier</p>
-          {panier.length < 0 ? (
+          {basket.length < 0 ? (
             <p>Votre panier est vide</p>
           ) : (
             <div>
-              <p>{panier[index].title}</p>
-              <p>{panier[index].price}</p>
+              {basket.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <p>
+                      <button>-</button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() => {
+                          console.log("toto");
+                        }}
+                      >
+                        +
+                      </button>
+                      {item.title} <span>{item.price} €</span>
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
